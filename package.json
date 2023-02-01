@@ -29,7 +29,7 @@
     "apollo-server-fastify": "^3.11.1",
     "argon2": "^0.30.3",
     "class-validator": "^0.14.0",
-    "fastify": "^4.12.0",
+    "fastify": "^3.0.0",
     "graphql": "^15.8.0",
     "prisma": "^4.9.0",
     "reflect-metadata": "^0.1.13",
