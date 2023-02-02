@@ -17,3 +17,13 @@ export async function getAllTodos() {
 export async function createTodo() {
     return 
 }
+
+
+export async function updateTodo() {
+    return
+}
+
+
+export async function deleteTodo() {
+    return
+}
