@@ -1,19 +1,22 @@
-import { Query, Resolver } from "type-graphql";
-import { Todo } from "./todo.dto";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { CreateTodoInput, Todo } from "./todo.dto";
+import { createTodo, getAllTodos } from "./todo.service";
 
 
 @Resolver(() => Todo)
 class Todoresolver {
+    
 
+    @Mutation(() => Todo)
+    async createtodo(@Arg("input") input: CreateTodoInput) {
+        const res = await createTodo(input)
+        return res
+    }
 
-    @Query(() => Todo)
-    todo() {
-        return {
-            id: 1,
-            title: "gym",
-            desc: "goto gym",
-            status: "pending"
-        }
+    @Query(() => [Todo])
+    async getalltodos() {
+        const res = await getAllTodos()
+        return res
     }
 }
 

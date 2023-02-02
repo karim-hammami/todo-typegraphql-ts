@@ -1,4 +1,5 @@
 import prisma from "../../utils/prisma"
+import { CreateTodoInput, UpdateTodoInput } from "./todo.dto"
 
 
 export async function getTodoById(id: number) {
@@ -14,16 +15,34 @@ export async function getAllTodos() {
 }
 
 
-export async function createTodo() {
-    return 
+export async function createTodo(input: CreateTodoInput) {
+    return prisma.todo.create({
+        data: {
+            title: input.title,
+            desc: input.desc,
+        }
+    })
 }
 
 
-export async function updateTodo() {
-    return
+export async function updateTodo({id, input}: {id: number, input: UpdateTodoInput}) {
+    return prisma.todo.update({
+        where: {
+            id,
+        },
+        data: {
+            title: input.title,
+            desc: input.desc,
+            status: input.status,
+        }
+    })
 }
 
 
-export async function deleteTodo() {
-    return
+export async function deleteTodo(id: number) {
+    return prisma.todo.delete({
+        where: {
+            id,
+        }
+    })
 }
