@@ -8,6 +8,7 @@ async function main() {
     
 
     await server.start()
+
     app.register(
         server.createHandler({
             cors: false
