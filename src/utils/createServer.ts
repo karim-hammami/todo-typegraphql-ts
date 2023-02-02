@@ -17,6 +17,8 @@ export async function createServer() {
 
     const server = new ApolloServer({
         schema,
+        playground: true,
+        introspection: true,
         plugins: [
             ApolloServerPluginDrainHttpServer({
                 httpServer: app.server 
