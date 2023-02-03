@@ -1,14 +1,7 @@
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
-import { ApolloServer } from "apollo-server-fastify";
-import fastify from "fastify";
+import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
 import Todoresolver from "../modules/todo/todo.resolver";
 
-const app = fastify()
-
-function buildContext() {
-
-}
 
 export async function createServer() {
     const schema = await buildSchema({
@@ -17,15 +10,10 @@ export async function createServer() {
 
     const server = new ApolloServer({
         schema,
-        playground: true,
-        introspection: true,
-        plugins: [
-            ApolloServerPluginDrainHttpServer({
-                httpServer: app.server 
-            })
-        ],
-        context: buildContext
     })
 
-    return {app, server}
+
+    server.listen({ port: 8080 }).then(({ url }) => {
+        console.log(`🚀  host ready at ${url}`);
+    });
 }
