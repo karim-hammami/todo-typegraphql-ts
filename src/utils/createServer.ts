@@ -5,7 +5,8 @@ import Todoresolver from "../modules/todo/todo.resolver";
 
 export async function createServer() {
     const schema = await buildSchema({
-        resolvers: [Todoresolver]
+        resolvers: [Todoresolver],
+        validate: false,
     })
 
     const server = new ApolloServer({

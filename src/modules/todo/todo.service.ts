@@ -1,11 +1,11 @@
 import prisma from "../../utils/prisma"
-import { CreateTodoInput, UpdateTodoInput } from "./todo.dto"
+import { CreateTodoInput, InputById, UpdateTodoInput } from "./todo.dto"
 
 
-export async function getTodoById(id: number) {
+export async function getTodoById(input: InputById) {
     return prisma.todo.findUnique({
         where: {
-            id,
+            id: input.id,
         }
     })
 }
@@ -25,10 +25,10 @@ export async function createTodo(input: CreateTodoInput) {
 }
 
 
-export async function updateTodo({id, input}: {id: number, input: UpdateTodoInput}) {
+export async function updateTodo(input: UpdateTodoInput) {
     return prisma.todo.update({
         where: {
-            id,
+            id: input.id,
         },
         data: {
             title: input.title,
@@ -39,10 +39,10 @@ export async function updateTodo({id, input}: {id: number, input: UpdateTodoInpu
 }
 
 
-export async function deleteTodo(id: number) {
+export async function deleteTodo(input: InputById) {
     return prisma.todo.delete({
         where: {
-            id,
+            id: input.id,
         }
     })
 }

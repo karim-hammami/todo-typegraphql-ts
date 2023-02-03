@@ -1,3 +1,4 @@
+import { isString } from "class-validator";
 import { Field, ID, InputType, ObjectType } from "type-graphql";
 
 @ObjectType()
@@ -28,6 +29,8 @@ export class CreateTodoInput {
 @InputType()
 export class UpdateTodoInput {
     @Field()
+    id: number
+    @Field()
     title: string
 
     @Field()
@@ -36,3 +39,10 @@ export class UpdateTodoInput {
     @Field()
     status: string
 }
+
+@InputType()
+export class InputById {
+    @Field()
+    id: number
+}
+
